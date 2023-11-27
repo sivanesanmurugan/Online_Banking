@@ -1,0 +1,143 @@
+<style>
+  body {
+    background-color: #f8f9fa;
+   
+  }
+
+  .container {
+    margin-top: 30px;
+  }
+
+  h2 {
+    color: #007bff;
+  }
+
+  .card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-title {
+    color: #fff;
+  }
+
+  .table {
+    margin-top: 20px;
+  }
+
+  th,
+  td {
+    text-align: center;
+  }
+
+  th {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  /* Different gradient colors for each card */
+  .card-total-amount {
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #3498db, #9b59b6);
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card-number-of-users {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #f3d736, #ffa500);
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card-user-registrations {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #DE6262, #FFB88C);
+    color: #ffffff;
+    text-align: center;
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+</style>
+
+<body>
+  <div class="container">
+    <h2>Welcome, Admin!</h2>
+
+    <div class="row">
+      <!-- Card: Total Amount -->
+      <div class="col-md-4">
+        <div class="card card-total-amount">
+          <div class="card-body">
+            <h5 class="card-title">Total Amount in Bank</h5>
+            <p class="card-text">$1,000,000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Number of Users -->
+      <div class="col-md-4">
+        <div class="card card-number-of-users">
+          <div class="card-body">
+            <h5 class="card-title">Number of Users in Bank</h5>
+            <p class="card-text">500</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Number of User Registrations -->
+      <div class="col-md-4">
+        <div class="card card-user-registrations">
+          <div class="card-body">
+            <h5 class="card-title">Number of User Registrations</h5>
+            <p class="card-text">20</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table: List of Transactions -->
+    <h3 class="mt-4">List of Transactions</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Accounts</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Sample data (replace with actual data from your backend) -->
+        <tr *ngFor="let tran of transactions">
+          <td>{{tran.id}}</td>
+          <td>{{tran.sourceAccount}} to {{tran.targetAccount}}</td>
+          <td>${{tran.amount}}</td>
+          <td>{{tran.localDateTime}}</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+</body>

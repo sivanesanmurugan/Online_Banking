@@ -1,0 +1,42 @@
+<section
+  class="px-4 py-5 px-md-5 text-center text-lg-start my-3"
+>
+<body>
+  <div class="card">
+    <div
+      class="card-header bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+    >
+      <h1 class="card-title text-2xl font-semibold text-white">
+        Account Detail
+      </h1>
+    </div>
+    <div *ngFor="let user of accountDetails">
+      <div class="card-body">
+        <h5 class="card-title">Hi, {{ appuser.username }}</h5>
+        <div class="mb-3">
+          <i class="fas fa-phone me-2"></i>
+          <span class="font-weight-bold">Account Number :</span>
+          <span class="ms-2">{{ user.account_No }}</span>
+        </div>
+
+        <div class="mb-3">
+          <i class="fas fa-envelope me-2"></i>
+          <span class="font-weight-bold">Balance :</span>
+          <span class="ms-2">{{ user.balance }}</span>
+        </div>
+
+        <div class="mb-3">
+          <i class="fas fa-address-book me-2"></i>
+          <span class="font-weight-bold">IFSC Code :</span>
+          <span class="ms-2">{{user.ifsc_code}}</span>
+        </div>
+        <div class="mb-3">
+          <i class="fas fa-address-book me-2"></i>
+          <span class="font-weight-bold">Account Type :</span>
+          <span class="ms-2">{{user.accountType}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</section>

@@ -1,0 +1,288 @@
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    max-width: 600px;
+    background-color: #f8f9fa;
+  }
+
+  .card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.5rem;
+  }
+
+  .card-header {
+    background-color: #3498db;
+    color: #ffffff;
+  }
+
+  .btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+  }
+
+  .btn-primary:hover {
+    background-color: #217dbb;
+    border-color: #217dbb;
+  }
+</style>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title text-2xl font-semibold">
+          Online Banking Registration
+        </h2>
+      </div>
+      <div class="card-body">
+        <!-- Registration Form -->
+        <form action="/register" method="post" #SignupFrom="ngForm">
+          <!-- Personal Information -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">First Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                name="firstName"
+                [(ngModel)]="firstname"
+                ngModel
+                required
+                minlength="3"
+                maxlength="15"
+                #firstName="ngModel"
+                [ngClass]="
+                  firstName.invalid && firstName.dirty ? 'is-invalid ' : ''
+                "
+              />
+              <div *ngIf="firstName.invalid" class="invalid-feedback">
+                please enter the name min 3 characters
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">Last Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                name="lastName"
+                [(ngModel)]="lastname"
+                ngModel
+                required
+                #lastName="ngModel"
+                [ngClass]="
+                  lastName.invalid && lastName.dirty ? 'is-invalid ' : ''
+                "
+              />
+              <div *ngIf="lastName.invalid" class="invalid-feedback">
+                please enter the character
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              ngModel
+              [(ngModel)]="email"
+              required
+              email
+              #Emailvaild="ngModel"
+              [ngClass]="
+                Emailvaild.invalid && Emailvaild.dirty ? 'is-invalid ' : ''
+              "
+            />
+            <div *ngIf="Emailvaild.invalid" class="invalid-feedback">
+              please enter the valid email
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="phone"
+              name="phone"
+              [(ngModel)]="phone"
+              ngModel
+              required
+            />
+          </div>
+
+          <!-- Address Information -->
+          <div class="mb-3">
+            <label for="address1" class="form-label">Address Line 1:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              name="address"
+              [(ngModel)]="address"
+              ngModel
+              required
+            />
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="state" class="form-label">State:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="state"
+                name="state"
+                [(ngModel)]="state"
+                ngModel
+                required
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="city" class="form-label">City:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="city"
+                name="city"
+                [(ngModel)]="city"
+                ngModel
+                required
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="zipcode" class="form-label">Zip Code:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="zipcode"
+                name="zipcode"
+                [(ngModel)]="zipcode"
+                ngModel
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Account Information -->
+          <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              [(ngModel)]="username"
+              ngModel
+              required
+              minlength="3"
+              maxlength="15"
+              #Username="ngModel"
+              [ngClass]="
+                Username.invalid && Username.dirty ? 'is-invalid ' : ''
+              "
+            />
+            <div *ngIf="Username.invalid" class="invalid-feedback">
+              please enter the name min 3 characters
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              ngModel
+              [(ngModel)]="password"
+              required
+              minlength="3"
+              maxlength="10"
+              #passwordvaild="ngModel"
+              [ngClass]="
+                passwordvaild.invalid && passwordvaild.dirty ? 'is-invalid' : ''
+              "
+            />
+            <div *ngIf="passwordvaild.invalid" class="invalid-feedback">
+              please enter the name min 3 characters
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label"
+              >Confirm Password:</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="confirmPassword"
+              name="confirmPassword"
+              ngModel
+              required
+              pattern="{{ passwordvaild.value }}"
+              #confpass="ngModel"
+              [ngClass]="
+                confpass.value !== passwordvaild.value && confpass.dirty
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+            <div *ngIf="confpass.valid" class="invalid-feedback">
+              Password is mismatch
+            </div>
+          </div>
+        
+          <div class="mb-3">
+            <label for="accountType" class="form-label">Account Type:</label>
+            <select
+              class="form-select"
+              id="accountType"
+              name="accountType"
+              [(ngModel)]="accountType"
+              required
+              #selectedOptionNgModel="ngModel"
+            >
+              <option value="" selected disabled>Select Account Type</option>
+              <option value="1">Savings</option>
+              <option value="2">Investment</option>
+            </select>
+            <div
+            *ngIf="
+              selectedOptionNgModel.invalid &&
+              (selectedOptionNgModel.dirty || selectedOptionNgModel.touched)
+            "
+          >
+          <div *ngIf="selectedOptionNgModel" class="invalid-feedback">
+            Please select an option.
+          </div>
+          </div>
+          <div class="d-flex align-items-center mb-4 mt-3">
+            <span>Already registered?</span>
+            <a
+              routerLink="/login"
+              class="text-primary text-decoration-none px-2"
+              >Login here</a
+            >
+          </div>
+
+          <!-- Register Button -->
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="SignupFrom.invalid"
+            (click)="register()"
+          >
+            Register
+          </button>
+        <!-- End Registration Form -->
+        </div>
+        </form>
+    </div>
+  </div>
+

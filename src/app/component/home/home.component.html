@@ -1,0 +1,137 @@
+<style>
+  body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+
+  .user-card,
+  .account-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 45%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+
+  .card-total-amount {
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #3498db, #9b59b6);
+    color: #ffffff;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .account-card {
+    background: linear-gradient(
+      to right,
+      #3498db,
+      #2980b9
+    ); /* Blue gradient color */
+    color: #ffffff;
+  }
+
+  .transaction-history {
+    padding: 20px;
+    margin: 20px auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  thead {
+    background: #069ad9;
+    color: #ffffff;
+  }
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    width: 20%;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  /* Add specific colors for each transaction type */
+  [data-type="deposit"] td:nth-child(2) {
+    color: #27ae60; /* Green color for Deposit */
+  }
+
+  [data-type="withdrawal"] td:nth-child(2) {
+    color: #e74c3c; /* Red color for Withdrawal */
+  }
+
+  /* Add more styles for other transaction types as needed */
+</style>
+<body *ngFor="let account of accountDetails">
+  <div class="container">
+    <div class="account-card" *ngFor="let user of userProfile">
+      <!-- User Details -->
+      <h2>Hii {{user.firstName}}</h2>
+      <p>account: <span>{{ account.account_No}}</span></p>
+      <p>Email: <span>{{ user.email }}</span></p>
+      <p>Phone: <span>{{ user.phone }}</span></p>
+      <!-- Add more user details as needed -->
+    </div>
+
+    <div class="account-card" >
+      <!-- Account Details -->
+      <h2>Account Details</h2>
+      <p>Account Number: {{ account.account_No }}</p>
+      <p>Account Type: {{ account.accountType }}</p>
+      <a (click)="hideBalance()"
+        >Balance:
+        <span *ngIf="showBalance"> ${{ account.balance }}</span></a
+      >
+      <!-- Add more account details as needed -->
+    </div>
+  </div>
+
+  <div class="transaction-history">
+    <!-- Transaction History Details -->
+    <h2>Transaction History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Transaction ID</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-type="deposit">
+          <td>1</td>
+          <td>Deposit</td>
+          <td>$100.00</td>
+          <td>2023-01-01</td>
+          <td>Initial deposit</td>
+        </tr>
+        <tr data-type="withdrawal">
+          <td>2</td>
+          <td>Withdrawal</td>
+          <td>$50.00</td>
+          <td>2023-02-01</td>
+          <td>ATM withdrawal</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+</body>

@@ -1,0 +1,103 @@
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    h2 {
+        color: #007bff;
+    }
+
+    .report {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .report-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .report-content {
+        font-size: 16px;
+    }
+
+    .reply-form {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    textarea {
+        resize: vertical; /* Allow vertical resizing of the textarea */
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+
+<body>
+
+<div class="container">
+<h2 class="text-dark">Admin Reports</h2>
+
+<div class="report">
+    <div class="report-title">Report Title 1</div>
+    <div class="report-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac tincidunt nulla, sit amet consequat justo.
+        Quisque euismod, velit in fringilla maximus, felis tortor euismod nunc.
+    </div>
+    <!-- Reply form -->
+    <div class="reply-form">
+        <form id="replyForm1">
+            <div class="form-group">
+                <label for="reply1">Reply:</label>
+                <textarea class="form-control" id="reply1" name="reply" rows="3" required></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="submitReply('replyForm1')">Submit Reply</button>
+        </form>
+    </div>
+</div>
+
+<div class="report">
+    <div class="report-title">Report Title 2</div>
+    <div class="report-content">
+        Duis laoreet vestibulum est, in tincidunt neque posuere sit amet. Nulla facilisi. 
+        Integer ullamcorper, ex nec efficitur pharetra, neque justo congue tortor.
+    </div>
+    <!-- Reply form -->
+    <div class="reply-form">
+        <form id="replyForm2">
+            <div class="form-group">
+                <label for="reply2">Reply:</label>
+                <textarea class="form-control" id="reply2" name="reply" rows="3" required></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="submitReply('replyForm2')">Submit Reply</button>
+        </form>
+    </div>
+</div>
+
+<!-- Add more reports as needed -->
+
+</div>

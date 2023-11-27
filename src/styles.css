@@ -1,1 +1,174 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  --primary-50: #ffffff;    /* White */
+  --primary-100: #edf7f6;   /* Light blue */
+  --primary-200: #000000;   /* Light blue */
+  --primary-300: #d7e1fa;   /* Lighter blue or grey */
+  --primary-500: #005ae1;   /* Blue */
+  --primary-600: #069ad9;   /* Darker blue */
+  --primary-700: #b45309;   /* Accent color (e.g., grey) */
+  --primary-900: #78350f;   /* Dark accent color (e.g., darker grey) */
+
+  --secondary-100: #ffffff; /* White */
+  --secondary-500: #0169f9; /* Blue */
+  --secondary-900: #004cff; /* Dark blue */
+
+  --red-100: #fee2e2;
+  --red-300: #fca5a5;
+  --red-500: #ef4444;
+  --red-700: #b91c1c;
+
+  --green-300: #bef264;
+  --green-500: #84cc16;
+  --green-700: #4d7c0f;
+
+  --border-radius: 4px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--primary-50);
+}
+
+/* text */
+.text-primary {
+  color: var(--primary-500) !important;
+}
+
+/* background */
+.bg-primary {
+  background-color: var(--primary-600) !important;
+}
+
+/* button */
+.btn {
+  border-radius: var(--border-radius);
+}
+
+.btn-primary {
+  color: var(--secondary-100);
+  background: var(--primary-500);
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  color: var(--secondary-100);
+  background: var(--primary-600) !important;
+  border: none;
+}
+
+.btn-danger {
+  color: var(--secondary-100);
+  background: var(--red-500);
+  border: none;
+}
+
+.btn-danger:hover {
+  color: var(--secondary-100);
+  background: var(--red-700);
+  border: none;
+}
+
+.btn-success {
+  color: var(--secondary-100);
+  background: var(--green-500);
+  border: none;
+}
+
+.btn-success:hover {
+  color: var(--secondary-100);
+  background: var(--green-700);
+  border: none;
+}
+
+form .form-control,
+form .form-control:focus {
+  color: var(--primary-200);
+  background-color: var(--primary-100);
+  border-color: var(--primary-500);
+  outline: 0;
+  /* box-shadow: 0 0 0 0.25rem var(--primary-300); */
+}
+
+form .form-label {
+  color: var(--primary-200);
+}
+
+.border {
+  border-right-color: var(--primary-300) !important;
+}
+
+/* background color */
+.bg-body-tertiary {
+  background-color: var(--primary-100) !important;
+}
+
+/* Custom */
+.error {
+  background-color: var(--red-100);
+  margin: 8px 0px;
+  padding: 8px 12px;
+  display: block;
+  color: var(--red-700);
+  border-radius: var(--border-radius);
+  height: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 1px solid var(--red-500);
+}
+
+.sideBarActive,
+.sideBarActive > a,
+.sideBarActive > a:hover,
+.sideBarActive > a:active {
+  color: var(--primary-500);
+  background-color: var(--primary-50) !important;
+  padding: 8px;
+}
+
+.sideBarItem,
+.sideBarItem > a {
+  color: var(--primary-200);
+  padding: 8px;
+}
+
+.sideBarItem > a:hover {
+  color: var(--primary-500);
+}
+
+.sideBarActive > .fa-solid {
+  color: var(--primary-500);
+}
+
+.sideBarItem:hover {
+  color: var(--primary-500);
+  background-color: var(--primary-50);
+  padding: 8px;
+}
+
+/* Icon */
+.fa-solid {
+  color: var(--primary-300);
+}
+
+.loader {
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vw;
+  opacity: 0.5;
+  background-color: #000;
+  z-index: 99;
+  left: 0;
+  top: 0;
+}
+
+.lottie-loader {
+  width: 150px !important;
+  height: 150px !important;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}

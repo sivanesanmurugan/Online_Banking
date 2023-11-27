@@ -1,0 +1,53 @@
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    h2 {
+        color: #007bff;
+    }
+
+    .table {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    th {
+        background-color: #007bff;
+        color: #fff;
+    }
+</style>
+<!-- Table: List of Transactions -->
+<h3 class="mt-4">List of Transactions</h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Transaction ID</th>
+      <th>User ID</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Sample data (replace with actual data from your backend) -->
+    <tr *ngFor="let transaction of userTransaction" >
+      <td>{{transaction.id}}</td>
+      <td>{{transaction.sourceAccount}} to {{transaction.targetAccount}}</td>
+      <td>${{transaction.amount}}</td>
+      <td>{{transaction.localDateTime}}</td>
+    </tr>
+
+    <!-- Add more rows as needed -->
+  </tbody>
+</table>
