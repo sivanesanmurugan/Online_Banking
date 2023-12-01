@@ -1,9 +1,4 @@
 <style>
-  body {
-    background-color: #f8f9fa;
-   
-  }
-
   .container {
     margin-top: 30px;
   }
@@ -36,7 +31,7 @@
   }
 
   th {
-    background-color: #007bff;
+    background-color: #069ad9;
     color: #fff;
   }
 
@@ -50,10 +45,9 @@
     border-color: #0056b3;
   }
 
-  /* Different gradient colors for each card */
   .card-total-amount {
     margin-bottom: 20px;
-    background: linear-gradient(to right, #3498db, #9b59b6);
+    background: linear-gradient(to right, #3498db, #2980b9);
     color: #ffffff;
     text-align: center;
     padding: 1.5rem;
@@ -63,7 +57,7 @@
   .card-number-of-users {
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #f3d736, #ffa500);
+    background: linear-gradient(to right, #3498db, #2980b9);
     color: #ffffff;
     text-align: center;
     padding: 1.5rem;
@@ -73,71 +67,70 @@
   .card-user-registrations {
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #DE6262, #FFB88C);
+    background: linear-gradient(to right, #3498db, #2980b9);
     color: #ffffff;
     text-align: center;
-    padding: 0.8rem;
+    padding: 1.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 </style>
 
 <body>
+ 
   <div class="container">
-    <h2>Welcome, Admin!</h2>
+    <h2 class="fs-1 text-dark">Welcome, Admin!</h2>
 
-    <div class="row">
-      <!-- Card: Total Amount -->
+    <div class="row pointer">
       <div class="col-md-4">
         <div class="card card-total-amount">
           <div class="card-body">
-            <h5 class="card-title">Total Amount in Bank</h5>
-            <p class="card-text">$1,000,000</p>
+            <h6 class="card-title">Total Amount in Bank</h6>
+            <p class="card-text fs-1 ">$ {{ totalBalance }}</p>
           </div>
         </div>
       </div>
 
-      <!-- Card: Number of Users -->
       <div class="col-md-4">
         <div class="card card-number-of-users">
           <div class="card-body">
-            <h5 class="card-title">Number of Users in Bank</h5>
-            <p class="card-text">500</p>
+            <h6 class="card-title">Number of User</h6>
+            <p class="card-text fs-1">0{{ userDetails.length }}</p>
           </div>
         </div>
       </div>
 
-      <!-- Card: Number of User Registrations -->
       <div class="col-md-4">
         <div class="card card-user-registrations">
           <div class="card-body">
-            <h5 class="card-title">Number of User Registrations</h5>
-            <p class="card-text">20</p>
+            <h6 class="card-title">Not Approval</h6>
+            <p class="card-text fs-1">0{{ registerUser.length }}</p>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Table: List of Transactions -->
     <h3 class="mt-4">List of Transactions</h3>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Accounts</th>
-          <th>Amount</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Sample data (replace with actual data from your backend) -->
-        <tr *ngFor="let tran of transactions">
-          <td>{{tran.id}}</td>
-          <td>{{tran.sourceAccount}} to {{tran.targetAccount}}</td>
-          <td>${{tran.amount}}</td>
-          <td>{{tran.localDateTime}}</td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
-    </table>
+    <div >
+      <table class="table table-bordered" *ngIf="transactions.length > 0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Accounts</th>
+            <th>Amount</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tran of transactions">
+            <td>{{ tran.id }}</td>
+            <td>{{ tran.sourceAccount }} to {{ tran.targetAccount }}</td>
+            <td>${{ tran.amount }}</td>
+            <td>{{ tran.localDateTime }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="transactions.length<=0">
+      <ng-lottie [options]="options" width="100%" height="60%"></ng-lottie>
+    </div>
   </div>
 </body>

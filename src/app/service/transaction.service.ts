@@ -4,12 +4,16 @@ import { AppResponse } from '../model/appResponse';
 import { Observable } from 'rxjs';
 import { urlEndpoint } from '../utils/constant';
 import { Transaction } from '../model/transaction';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TransactionService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private storageservice: StorageService
+  ) {}
 
   getAllTransactions(): Observable<AppResponse> {
     return this.http.get<AppResponse>(
@@ -39,4 +43,6 @@ export class TransactionService {
       newTransaction
     );
   }
+
+        
 }

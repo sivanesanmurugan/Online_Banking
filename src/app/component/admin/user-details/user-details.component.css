@@ -1,0 +1,22 @@
+.container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    color: #007bff;
+  }
+
+  .table {
+    border-radius: 5px;
+  }
+
+  .table th,
+  .table td {
+    text-align: center;
+  }
+
+  .thead-dark th {
+    background-color: #069ad9;
+    color: #fff;
+  }

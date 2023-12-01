@@ -12,29 +12,31 @@
     </div>
     <div *ngFor="let user of accountDetails">
       <div class="card-body">
-        <h5 class="card-title">Hi, {{ appuser.username }}</h5>
-        <div class="mb-3">
-          <i class="fas fa-phone me-2"></i>
-          <span class="font-weight-bold">Account Number :</span>
+        
+        <h5 class="card-title"><i class="fa-solid fa-user"> </i> {{ appuser.username }}</h5>
+        <div class="mb-3 mt-3 pt-3">
+          <i class="fa-solid fa-landmark"> </i>
+          <span class="font-weight-bold"> Account Number :</span>
           <span class="ms-2">{{ user.account_No }}</span>
         </div>
 
         <div class="mb-3">
-          <i class="fas fa-envelope me-2"></i>
-          <span class="font-weight-bold">Balance :</span>
+          <i class="fa-solid fa-money-check-dollar"> </i>
+          <span class="font-weight-bold"> Balance :</span>
           <span class="ms-2">{{ user.balance }}</span>
         </div>
 
         <div class="mb-3">
-          <i class="fas fa-address-book me-2"></i>
-          <span class="font-weight-bold">IFSC Code :</span>
-          <span class="ms-2">{{user.ifsc_code}}</span>
+          <i class="fa-brands fa-squarespace"> </i>
+          <span class="font-weight-bold"> IFSC Code :</span>
+          <span class="ms-2">{{user.ifsc_Code}}</span>
         </div>
         <div class="mb-3">
-          <i class="fas fa-address-book me-2"></i>
-          <span class="font-weight-bold">Account Type :</span>
-          <span class="ms-2">{{user.accountType}}</span>
+          <i class="fa-solid fa-person-circle-check"> </i>
+          <span class="font-weight-bold"> Account Approval :</span>
+          <span class="ms-2">{{user.approval}}</span>
         </div>
+
       </div>
     </div>
   </div>

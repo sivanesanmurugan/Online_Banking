@@ -55,7 +55,8 @@ export class AuthService {
     this.isLoggedInSubject.next(false);
     this.storageService.removeLoggedInUser();
     this.storageService.removeAuthData();
-    this.storageService.removeAccount();
+    this.storageService.removeSavingAccount();
+    this.storageService.removeRoute();
     this.router.navigate(['/login'], { replaceUrl: true });
   }
 
@@ -70,11 +71,15 @@ export class AuthService {
   setLoggedIn(user: AppUser): void {
     this.storageService.setLoggedInUser(user);
     this.isLoggedInSubject.next(true);
+
+    let route: string | null = this.storageService.getRoute();
     if (user.role === CONSTANT.USER) {
-      this.router.navigate(['/'], { replaceUrl: true });
+      if (route === null) route = "";
+      this.router.navigate(["/" + route], { replaceUrl: true });
     } else if (user.role === CONSTANT.ADMIN) {
+      if (route === null) route = "admin";
       this.isAdminSubject.next(true);
-      this.router.navigate(['/admin'], { replaceUrl: true });
+      this.router.navigate(["/" + route], { replaceUrl: true });
     }
   }
 }

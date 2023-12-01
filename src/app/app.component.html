@@ -5,55 +5,64 @@
 <div *ngIf="isLoggedIn" class="container-fluid vh-100 d-flex flex-column">
   <div class="row">
     <header class="navbar sticky-top bg-primary p-2 shadow">
-      <a class="navbar-brand px-3 text-white" routerLink="/">
+      <a class="navbar-brand  text-white" routerLink="/admin">
         <img
-          [src]="'assets/logo.webp'"
+          [src]="'assets/logo3.png'"
           alt="Self Transfer Image"
-          style="height: 30px; width: 35px"
+          style="height: 30px; width: 55px"
+          
         />
-        Shiva Bank</a
+        Zenith</a
       >
-      <div class="navbar-nav px-4 text-white" (click)="logout()" role="button">
-        <i class="fa-solid fa-solid fa-right-from-bracket text-white"></i>
-      </div>
     </header>
   </div>
 
-  <div *ngIf="isAdmin" class="row flex-grow-1">
+  <div *ngIf="isAdmin" class="row flex-grow-1 ">
     <div class="sidebar border border-right col-2 p-0">
       <div class="bg-body-tertiary h-100" tabindex="-1">
         <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
           <ul class="nav flex-column">
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-house" style="color: #273d62"></i>
-              <a class="nav-link d-flex align-items-center" routerLink="admin"
-                >Dashboard
-              </a>
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              [routerLink]="['/admin']"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <i class="fa-solid fa-house"></i>
+              <a class="nav-link d-flex align-items-center">Dashboard </a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-book" style="color: #273d62"></i>
-              <a
-                class="nav-link d-flex align-items-center"
-                routerLink="userdetail"
-                >UserDetails
-              </a>
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              routerLink="userdetail"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <i class="fa-solid fa-book"></i>
+              <a class="nav-link d-flex align-items-center">User Details </a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-user" style="color: #273d62"></i>
-              <a
-                class="nav-link d-flex align-items-center"
-                routerLink="accountapproval"
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              routerLink="accountapproval"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <i class="fa-solid fa-user"></i>
+              <a class="nav-link d-flex align-items-center"
                 >Account Approval
               </a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              (click)="logout()"
+              role="button"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <i
-                class="fa-solid fa-clock-rotate-left"
-                style="color: #273d62"
+                class="fa-solid fa-solid fa-right-from-bracket"
+               
               ></i>
-              <a class="nav-link d-flex align-items-center" routerLink="reports"
-                >Reports</a
-              >
+              <a class="nav-link d-flex align-items-center">Logout </a>
             </li>
           </ul>
         </div>
@@ -63,57 +72,76 @@
       <router-outlet></router-outlet>
     </main>
   </div>
-  <div *ngIf="!isAdmin" class="row flex-grow-1">
+  <div *ngIf="!isAdmin" class="row flex-grow-1 ">
     <div class="sidebar border border-right col-2 p-0">
       <div class="bg-body-tertiary h-100" tabindex="-1">
         <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
           <ul class="nav flex-column">
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-house" style="color: #273d62"></i>
-              <a class="nav-link d-flex align-items-center" routerLink="/">
-                Dashboard
-              </a>
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              routerLink="/"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <i class="fa-solid fa-house" ></i>
+              <a class="nav-link d-flex align-items-center"> Dashboard </a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              *ngIf="isApproval"
+              routerLink="fundtransfer"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <i
                 class="fa-solid fa-money-bill-transfer"
-                style="color: #273d62"
+               
               ></i>
-              <a
-                class="nav-link d-flex align-items-center"
-                routerLink="fundtransfer"
-                >Fund Transfer</a
-              >
+              <a class="nav-link d-flex align-items-center">Fund Transfer</a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-user" style="color: #273d62"></i>
-              <a
-                class="nav-link d-flex align-items-center"
-                routerLink="userprofile"
-                >User Profile</a
-              >
+
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              routerLink="userprofile"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <i class="fa-solid fa-user" ></i>
+              <a class="nav-link d-flex align-items-center">User Profile</a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              routerLink="transationhistory"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <i
                 class="fa-solid fa-clock-rotate-left"
-                style="color: #273d62"
               ></i>
-              <a
-                class="nav-link d-flex align-items-center"
-                routerLink="transationhistory"
-                >Transaction
-              </a>
+              <a class="nav-link d-flex align-items-center">Transaction </a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              routerLink="accountdetail"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <i
                 class="fa-solid fa-file-invoice-dollar"
-                style="color: #273d62"
               ></i>
-              <a
-                class="nav-link d-flex align-items-center"
-                routerLink="accountdetail"
-                >Account Details</a
-              >
+              <a class="nav-link d-flex align-items-center">Account Details</a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center px-4 sideBarItem"
+              (click)="logout()"
+              role="button"
+              routerLinkActive="sideBarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <i
+                class="fa-solid fa-solid fa-right-from-bracket"
+              ></i>
+              <a class="nav-link d-flex align-items-center">Logout </a>
             </li>
           </ul>
         </div>

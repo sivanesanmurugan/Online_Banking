@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AnimationOptions } from 'ngx-lottie';
 import { Account } from 'src/app/model/account';
 import { AppResponse } from 'src/app/model/appResponse';
 import { AccountApprovalService } from 'src/app/service/account-approval.service';
@@ -9,6 +10,9 @@ import { AccountApprovalService } from 'src/app/service/account-approval.service
   styleUrls: ['./account-approval.component.css'],
 })
 export class AccountApprovalComponent {
+  options: AnimationOptions = {
+    path: '/assets/nodata.json',
+  };
   error: string = '';
   accountDetails: Account[] = [];
 
@@ -27,7 +31,6 @@ export class AccountApprovalComponent {
     });
   }
   approval(id: number):void {
-    console.log(id+"hii");
     this.accountApprovalService.putAccountApproval(id).subscribe({
       next: (response: AppResponse) => {
         console.log('donee');

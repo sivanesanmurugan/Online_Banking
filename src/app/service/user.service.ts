@@ -11,6 +11,7 @@ import { UserProfile } from '../model/user-profile';
   providedIn: 'root'
 })
 export class UserService {
+
   constructor(private http: HttpClient,private storageService:StorageService) {}
 
   getUserDetails(): Observable<AppResponse> {
@@ -22,5 +23,8 @@ export class UserService {
   }
   postUserDetails(user:UserProfile): Observable<AppResponse>{
     return this.http.put<AppResponse>(`${urlEndpoint.baseUrl}/user/showDetails`,user);
+  }
+  getCount() : Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${urlEndpoint.baseUrl}/admin/allUsers/count`);
   }
 }

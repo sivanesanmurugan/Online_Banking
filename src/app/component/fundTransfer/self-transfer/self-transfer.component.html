@@ -1,52 +1,3 @@
-<style>
-  body {
-    background-color: #f8f9fa;
-  }
-
-  .container {
-    max-width: 600px;
-    margin-top: 50px;
-  }
-
-  .card {
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.5rem;
-  }
-
-  .card-header {
-    background: linear-gradient(to right, #3498db, #9b59b6);
-    color: #ffffff;
-    text-align: center;
-    padding: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .card-body {
-    padding: 2rem;
-  }
-
-  .form-label {
-    font-weight: bold;
-  }
-
-  .form-control {
-    border-radius: 0.375rem;
-  }
-
-  .btn-primary {
-    background-color: #3498db;
-    border-color: #3498db;
-    border-radius: 0.375rem;
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-
-  .btn-primary:hover {
-    background-color: #217dbb;
-    border-color: #217dbb;
-  }
-</style>
-
 <body>
   <div class="container">
     <div class="card">
@@ -55,7 +6,7 @@
       </div>
       <div class="card-body">
         <form action="/process-transfer" method="post">
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label for="accountType" class="form-label"
               >Select Account Type:</label
             >
@@ -64,12 +15,13 @@
               id="transactionType"
               name="transactionType"
               required
+              [(ngModel)]="transactionType" (change)="updateReceiverAccount()"
             >
               <option value="" selected disabled>Select Account Type</option>
-              <option value="savingsToInvestment">Savings to Investment</option>
-              <option value="investmentToSavings">Investment to Savings</option>
+              <option value="1">Savings to Investment</option>
+              <option value="2">Investment to Savings</option>
             </select>
-          </div>
+          </div> -->
 
           <div class="mb-3">
             <label for="senderAccount" class="form-label"
@@ -86,18 +38,23 @@
           </div>
 
           <div class="mb-3">
-            <label for="receiverAccount" class="form-label"
-              >Receiver's Account Number:</label
-            >
+            <label for="receiverAccount" class="form-label">Receiver's Account Number:</label>
             <input
               type="text"
               class="form-control"
               id="targetAccount"
               name="targetAccount"
               required
+              minlength="10"
               [(ngModel)]="targetAccount"
+              #targetAccountInput="ngModel" 
+              [ngClass]="{ 'is-invalid': targetAccountInput.invalid && targetAccountInput.dirty }" 
             />
+            <div *ngIf="targetAccountInput.invalid" class="invalid-feedback">
+              Please enter a valid 10-digit account number.
+            </div>
           </div>
+          
 
           <div class="mb-3">
             <label for="amount" class="form-label">Amount:</label>
@@ -106,12 +63,32 @@
               class="form-control"
               id="amount"
               name="amount"
+              ngModel
               required
+              min="1" 
               [(ngModel)]="amount"
+              #amountInput="ngModel" 
+              [ngClass]="{ 'is-invalid': amountInput.invalid && amountInput.dirty }" 
             />
+            <div *ngIf="amountInput.invalid" class="invalid-feedback">
+              Please enter a valid amount greater than or equal to 1.
+            </div>
           </div>
+          
+          <p
+            class="error"
+            [ngClass]="error.length > 0 ? 'visible' : 'invisible'"
+          >
+            {{ error }}
+          </p>
 
-          <button type="submit" class="btn btn-primary"(click)="fundtransfer()">Transfer Funds</button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="fundtransfer()"
+          >
+            Transfer Funds
+          </button>
         </form>
       </div>
     </div>

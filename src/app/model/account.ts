@@ -1,7 +1,8 @@
 export interface Account {
-  id: number;
+  id?: number;
   account_No: number;
   accountType?:string;
-  ifsc_code: string;
-  balance: number;
+  ifsc_Code?: string;
+  balance?: number;
+  approval?:boolean;
 }

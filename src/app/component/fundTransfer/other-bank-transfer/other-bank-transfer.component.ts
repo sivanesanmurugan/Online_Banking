@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Transaction } from 'src/app/model/transaction';
+import { StorageService } from 'src/app/service/storage.service';
 import { TransactionService } from 'src/app/service/transaction.service';
 
 @Component({
@@ -10,30 +12,31 @@ import { TransactionService } from 'src/app/service/transaction.service';
 export class OtherBankTransferComponent {
   error: string = '';
   transactionType: number = 3;
-  sourceAccount: number = 0;
-  targetAccount: number = 0;
-  amount: number = 0;
+  sourceAccount=this.storageService.getSavingAccount();
+  targetAccount: number |null = null;
+  amount: number |null = null;
   transactionStatus: number = 1;
   transfer: Transaction[] = [];
   name: string = '';
   IFSC: string = '';
-  constructor(private transactionService: TransactionService) {}
+  constructor(private transactionService: TransactionService,private storageService:StorageService,private router: Router) {}
   fundtransfer() {
     let newTransaction: Transaction = {
       sourceAccount: this.sourceAccount,
-      targetAccount: this.targetAccount,
+      targetAccount: this.targetAccount!,
       transactionType: this.transactionType,
       transactionStatus: this.transactionStatus,
-      amount: this.amount,
+      amount: this.amount!,
     };
     this.transactionService.postOtherBankTransfer(newTransaction).subscribe({
       next: (response: any) => {
         this.transfer = response.data;
-        this.sourceAccount = 0;
-        this.targetAccount = 0;
-        this.amount = 0;
+        this.sourceAccount = this.storageService.getSavingAccount();
+        this.targetAccount = null;
+        this.amount = null;
         this.name = '';
         this.IFSC = '';
+        this.router.navigate(['/fundtransfer'], { replaceUrl: true });
       },
       error: (err) => {
         console.log(err?.error?.error?.message);

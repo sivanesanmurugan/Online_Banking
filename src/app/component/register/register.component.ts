@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
 import { Register } from 'src/app/model/register';
 import { AuthService } from 'src/app/service/auth.service';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ export class RegisterComponent {
   options: AnimationOptions = {
     path: '/assets/auth.json',
   };
-  constructor(private router: Router,private authservice: AuthService) {}
+  constructor(private router: Router,private authservice: AuthService ,private toastr: ToastrService) {}
   Register: Register[] = [];
   firstname: string = '';
   lastname: string = '';
@@ -27,13 +28,13 @@ export class RegisterComponent {
   accountType: number=0;
   register(): void {
     const userdetails: Register = {
-      firstName: this.firstname,
-      lastName: this.lastname,
+      firstName: this.firstname.charAt(0).toUpperCase()+this.firstname.slice(1),
+      lastName: this.lastname.toUpperCase(),
       email: this.email,
       phone: this.phone,
-      address: this.address,
-      city: this.city,
-      state: this.state,
+      address: this.address.charAt(0).toUpperCase() + this.address.slice(1),
+      city: this.city.charAt(0).toUpperCase()+this.city.slice(1),
+      state: this.state.toUpperCase(),
       zipcode: this.zipcode,
       username: this.username,
       password: this.password,
@@ -42,6 +43,7 @@ export class RegisterComponent {
     this.authservice.register(userdetails).subscribe({
       next: (response) => {
         this.Register = response.data;
+        this.toastr.success(" Registered successfully")
       },
     });
     // Redirect to login page

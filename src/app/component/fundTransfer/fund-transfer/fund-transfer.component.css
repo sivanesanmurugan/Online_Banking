@@ -1,0 +1,36 @@
+
+
+  .button-section {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  button {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 30%; /* Adjust the width as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  button img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  button:hover {
+    background-color: #217dbb;
+  }
+
+  h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    margin: 0;
+  }

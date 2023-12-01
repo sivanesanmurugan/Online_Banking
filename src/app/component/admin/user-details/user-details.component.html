@@ -1,70 +1,41 @@
-<style>
-  body {
-    background-color: #f8f9fa; /* Light background color */
-    border-radius: 20px;
-    margin: 0;
-    padding: 0;
-  }
-
-  .border-cover {
-    border: 3px solid #dee2e6; /* Subtle border color */
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #fff; /* White background color inside the border */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .container {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  h2 {
-    color: #007bff;
-  }
-
-  .table {
-    border-radius: 5px;
-  }
-
-  .table th,
-  .table td {
-    text-align: center;
-  }
-
-  .thead-dark th {
-    background-color: #007bff;
-    color: #fff;
-  }
-</style>
 
 <body>
-  <div class="border-cover container">
+  <div class="border-cover container p-3">
     <h2 class="text-dark">User Details</h2>
     <table class="table table-bordered table-hover">
       <thead class="thead-dark">
         <tr>
-          <th>User ID</th>
           <th>Name</th>
-          <th>Account Number</th>
-          <th>Account Type</th>
+          <th>Email</th>
+          <th>Saving Account</th>
+          <th>Investment Account</th>
           <th>Address</th>
         </tr>
       </thead>
-      <tbody>
-        <!-- Sample data (replace with actual data from your backend) -->
-        <tr *ngFor="let user of userDetails" >
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.username }}</td>
-          <td></td>
+      <tbody *ngFor="let user of userDetails">
+        <tr >
+          <td>{{user.firstName}} {{user.lastName}}</td>
+          <td>{{user.email}}</td>
           <td>
-           
+            <ng-container *ngIf="user.accounts && user.accounts.length > 0; else noAccount">
+              <ng-container *ngFor="let u of user.accounts">
+                <span *ngIf="u.accountType === 'SAVING_ACCOUNT'">{{u.account_No}}</span>
+              </ng-container>
+            </ng-container>
+            <ng-template #noAccount>-</ng-template>
           </td>
+          <td>
+            <ng-container *ngIf="user.accounts && user.accounts.length > 0; else noInvestmentAccount">
+              <ng-container *ngFor="let u of user.accounts">
+                <span *ngIf="u.accountType === 'INVESTMENT_ACCOUNT'">{{u.account_No}}</span>
+              </ng-container>
+            </ng-container>
+            <ng-template #noInvestmentAccount>-</ng-template>
+          </td>
+          <td>{{user.address}}</td>
         </tr>
-
-        <!-- Add more rows as needed -->
       </tbody>
+      
     </table>
   </div>
 </body>

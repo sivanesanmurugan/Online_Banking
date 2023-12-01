@@ -9,6 +9,9 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+
+import { ToastrModule } from 'ngx-toastr';
 import player from 'lottie-web';
 import { LottieModule } from 'ngx-lottie';
 import { AdminHomeComponent } from './component/admin/home/home.component';
@@ -54,6 +57,8 @@ export function playerFactory() {
     ReactiveFormsModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory }),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

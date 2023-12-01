@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AnimationOptions } from 'ngx-lottie';
 import { AppResponse } from 'src/app/model/appResponse';
 import { AppUser } from 'src/app/model/appUser';
 import { UserDetail } from 'src/app/model/user-detail';
@@ -13,6 +14,10 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./userprofile.component.css'],
 })
 export class UserprofileComponent {
+  options: AnimationOptions = {
+    path: '/assets/auth.json',
+  };
+
   error: string = '';
   userProfile: UserProfile[] = [];
   firstname: string = '';

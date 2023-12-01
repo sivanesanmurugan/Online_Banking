@@ -1,0 +1,33 @@
+body {
+    margin: 20px; 
+    border-radius: 15px; 
+    padding: 20px; 
+}
+
+.container {
+    margin-top: 20px;
+}
+
+
+.table {
+    background-color: #fff;
+    border-radius: 5px !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+.thead-dark th {
+background-color: #069ad9;
+color: #fff;
+}
+
+.approval-btn {
+    width: 100%;
+}
+
+.approval-btn i {
+    margin-right: 5px;
+}

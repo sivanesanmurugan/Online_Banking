@@ -21,10 +21,11 @@
     th, td {
         text-align: center;
         vertical-align: middle;
+        
     }
 
     th {
-        background-color: #007bff;
+        background-color: #069ad9;
         color: #fff;
     }
 </style>
@@ -32,22 +33,27 @@
 <h3 class="mt-4">List of Transactions</h3>
 <table class="table table-bordered">
   <thead>
-    <tr>
+    <tr >
       <th>Transaction ID</th>
-      <th>User ID</th>
+      <th>Type</th>
+      <th>To Account</th>
       <th>Amount</th>
       <th>Date</th>
+
     </tr>
   </thead>
   <tbody>
-    <!-- Sample data (replace with actual data from your backend) -->
-    <tr *ngFor="let transaction of userTransaction" >
-      <td>{{transaction.id}}</td>
-      <td>{{transaction.sourceAccount}} to {{transaction.targetAccount}}</td>
-      <td>${{transaction.amount}}</td>
-      <td>{{transaction.localDateTime}}</td>
+    <tr *ngFor=" let transfer of userTransaction">
+      <td>{{transfer.id}}</td>
+      <td *ngIf="userAccountNo==transfer.sourceAccount" class="text-danger">Debited</td>
+      <td *ngIf="userAccountNo==transfer.targetAccount" class="text-success">Credited</td>
+      <td >{{transfer.targetAccount}}</td>
+      <td>${{transfer.amount}}</td>
+      <td>{{transfer.localDateTime}}</td>
     </tr>
-
-    <!-- Add more rows as needed -->
+   
   </tbody>
 </table>
+<div class="d-flex justify-content-center" *ngIf="userTransaction.length<=0">
+  <ng-lottie [options]="options" width="100%" height="90%"></ng-lottie>
+</div>

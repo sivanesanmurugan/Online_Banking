@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { AnimationOptions } from 'ngx-lottie';
 import { LoaderService } from './service/loader.service';
+import { AccountDetialService } from './service/account-detial.service';
+import { Account } from './model/account';
 
 @Component({
   selector: 'app-root',
@@ -19,10 +21,11 @@ export class AppComponent implements OnInit {
   isAdmin: boolean = false;
   isUser:boolean=false;
   isLoggedIn: boolean = false;
-
+  isApproval: boolean=false;
+  accountDetails: Account[] = [];
   constructor(
     private authService: AuthService,
-    public loaderService: LoaderService
+    public loaderService: LoaderService,private accountService:AccountDetialService
   ) {}
 
   ngOnInit(): void {
@@ -36,9 +39,18 @@ export class AppComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
+    this.accountService.getAccountDetails().subscribe({
+      next: (response: any) => {
+        this.accountDetails = response.data;
+        this.isApproval=this.accountDetails[0].approval!;
+      },
+    })
+
   }
 
   logout(): void {
+   
     this.authService.logout();
+   
   }
 }

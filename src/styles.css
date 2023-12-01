@@ -1,18 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import 'ngx-toastr/toastr';
 
 :root {
-  --primary-50: #ffffff;    /* White */
-  --primary-100: #edf7f6;   /* Light blue */
-  --primary-200: #000000;   /* Light blue */
-  --primary-300: #d7e1fa;   /* Lighter blue or grey */
-  --primary-500: #005ae1;   /* Blue */
-  --primary-600: #069ad9;   /* Darker blue */
-  --primary-700: #b45309;   /* Accent color (e.g., grey) */
-  --primary-900: #78350f;   /* Dark accent color (e.g., darker grey) */
+  --primary-50: #ffffff; 
+  --primary-100: #edf7f6; 
+  --primary-200: #000000; 
+  --primary-300: #d7e1fa; 
+  --primary-500: #005ae1; 
+  --primary-600: #069ad9; 
+  --primary-700: #b45309; 
+  --primary-900: #78350f; 
 
-  --secondary-100: #ffffff; /* White */
-  --secondary-500: #0169f9; /* Blue */
-  --secondary-900: #004cff; /* Dark blue */
+  --secondary-100: #ffffff; 
+  --secondary-500: #0169f9; 
+  --secondary-900: #004cff;
 
   --red-100: #fee2e2;
   --red-300: #fca5a5;
@@ -27,7 +28,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: var(--primary-50);
 }
 
@@ -87,8 +88,8 @@ body {
 form .form-control,
 form .form-control:focus {
   color: var(--primary-200);
-  background-color: var(--primary-100);
-  border-color: var(--primary-500);
+  background-color: var(--primary-50);
+  border-color: var(--primary-200);
   outline: 0;
   /* box-shadow: 0 0 0 0.25rem var(--primary-300); */
 }
@@ -124,23 +125,25 @@ form .form-label {
 .sideBarActive > a,
 .sideBarActive > a:hover,
 .sideBarActive > a:active {
-  color: var(--primary-500);
-  background-color: var(--primary-50) !important;
+  color: var(--primary-50) !important;
   padding: 8px;
 }
 
 .sideBarItem,
 .sideBarItem > a {
-  color: var(--primary-200);
+  /* color: var(--primary-200); */
   padding: 8px;
 }
 
 .sideBarItem > a:hover {
-  color: var(--primary-500);
+  color: inherit;
 }
 
-.sideBarActive > .fa-solid {
-  color: var(--primary-500);
+.sideBarActive > .fa-solid :hover {
+  color: var(--primary-50);
+}
+.sideBarItem > .fa-solid :hover {
+  color: var(--primary-50) !important;
 }
 
 .sideBarItem:hover {
@@ -149,9 +152,28 @@ form .form-label {
   padding: 8px;
 }
 
-/* Icon */
+.nav-item:hover {
+  color: var(--primary-100) !important;
+  background-color: var(--primary-600);
+  cursor: pointer;
+}
+
 .fa-solid {
-  color: var(--primary-300);
+  color: inherit;
+}
+
+.fa-solid:hover {
+  color: inherit;
+}
+
+.nav-link,
+.nav-link:hover {
+  color: inherit;
+}
+
+.sideBarActive {
+  background-color: var(--primary-500) !important;
+  color: var(--primary-100) !important;
 }
 
 .loader {
@@ -171,4 +193,7 @@ form .form-label {
   position: absolute;
   top: 40%;
   left: 45%;
+}
+.pointer {
+  cursor: pointer;
 }

@@ -30,11 +30,7 @@
   }
 
   .account-card {
-    background: linear-gradient(
-      to right,
-      #3498db,
-      #2980b9
-    ); /* Blue gradient color */
+    background: linear-gradient(to right, #3498db, #2980b9);
     color: #ffffff;
   }
 
@@ -66,72 +62,201 @@
   tbody tr:nth-child(even) {
     background-color: #f2f2f2;
   }
-
-  /* Add specific colors for each transaction type */
   [data-type="deposit"] td:nth-child(2) {
-    color: #27ae60; /* Green color for Deposit */
+    color: #27ae60;
   }
 
   [data-type="withdrawal"] td:nth-child(2) {
-    color: #e74c3c; /* Red color for Withdrawal */
+    color: #e74c3c;
   }
-
-  /* Add more styles for other transaction types as needed */
+  .by {
+    background-color: #069ad9;
+  }
 </style>
-<body *ngFor="let account of accountDetails">
-  <div class="container">
+<body class="pointer">
+  <div class="d-flex justify-content-end align-items-center py-4">
+    <button
+      type="submit"
+      class="by btn text-white"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      data-bs-whatever="@mdo"
+      *ngIf="accountDetails.length <= 1"
+    >
+      Add Account
+    </button>
+  </div>
+  <div class="d-flex justify-content-end align-items-center me-3" *ngIf="accountDetails.length > 1">
+    <button
+      *ngIf="accountDetails.length >= 2"
+      (click)="toggleAccount()"
+      class="btn btn-secondary"
+    >
+      Switch
+    </button>
+  </div>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Account</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="email" class="form-label">Username:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                ngModel
+                required
+                minlength="3"
+                maxlength="15"
+                #Namevaild="ngModel"
+                [ngClass]="{
+                  'is-invalid': Namevaild.invalid && Namevaild.dirty
+                }"
+              />
+              <div *ngIf="Namevaild.invalid" class="invalid-feedback">
+                Please enter a name with a minimum of 3 characters.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Password:</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                ngModel
+                minlength="3"
+                maxlength="15"
+                #Passvaild="ngModel"
+                [ngClass]="{
+                  'is-invalid': Passvaild.invalid && Passvaild.dirty
+                }"
+              />
+              <div *ngIf="Passvaild.invalid" class="invalid-feedback">
+                Please enter a password with a minimum of 3 characters.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="accountType" class="form-label">Account Type:</label>
+              <select
+                class="form-select"
+                id="accountType"
+                name="accountType"
+                [(ngModel)]="accountType"
+              >
+                <option value="" selected disabled>Select Account Type</option>
+                <option value="1">Savings</option>
+                <option value="2">Investment</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            class="by btn text-white"
+            data-bs-dismiss="modal"
+            (click)="addAccount()"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="container"
+    *ngIf="userProfile.length > 0 && accountDetails.length >= 1"
+  >
     <div class="account-card" *ngFor="let user of userProfile">
       <!-- User Details -->
-      <h2>Hii {{user.firstName}}</h2>
-      <p>account: <span>{{ account.account_No}}</span></p>
-      <p>Email: <span>{{ user.email }}</span></p>
-      <p>Phone: <span>{{ user.phone }}</span></p>
-      <!-- Add more user details as needed -->
+      <h2>Hii {{ user.firstName }} {{ user.lastName }}</h2>
+      <p>
+        Email: <span>{{ user.email }}</span>
+      </p>
+      <p>
+        Phone: <span>{{ user.phone }}</span>
+      </p>
+      <p>
+        Address:
+        <span>{{ user.address }},{{ user.city }}-{{ user.zipcode }}</span>
+      </p>
     </div>
 
-    <div class="account-card" >
-      <!-- Account Details -->
-      <h2>Account Details</h2>
-      <p>Account Number: {{ account.account_No }}</p>
-      <p>Account Type: {{ account.accountType }}</p>
-      <a (click)="hideBalance()"
-        >Balance:
-        <span *ngIf="showBalance"> ${{ account.balance }}</span></a
-      >
-      <!-- Add more account details as needed -->
+    <div class="account-card">
+      <div *ngFor="let account of accountDetails">
+        <div *ngIf="account.accountType == accountTy">
+          <h2>Account Details</h2>
+          <p>Account Number: {{ account.account_No }}</p>
+          <p>Account Type: {{ account.accountType }}</p>
+          <p (click)="hideBalance()">
+            Balance: 
+            <span *ngIf="showBalance">{{account.balance}}</span>
+            <span *ngIf="!showBalance" class="text-white">View Balance</span>
+          </p>
+        </div>
+      </div>
+      
     </div>
   </div>
 
   <div class="transaction-history">
-    <!-- Transaction History Details -->
     <h2>Transaction History</h2>
-    <table>
+    <table *ngIf="transactions.length>0">
       <thead>
         <tr>
           <th>Transaction ID</th>
           <th>Type</th>
+          <th>To Account</th>
           <th>Amount</th>
           <th>Date</th>
-          <th>Description</th>
         </tr>
       </thead>
-      <tbody>
-        <tr data-type="deposit">
-          <td>1</td>
-          <td>Deposit</td>
-          <td>$100.00</td>
-          <td>2023-01-01</td>
-          <td>Initial deposit</td>
+      <tbody *ngFor="let transfer of transactions">
+        <tr data-type="deposit" *ngIf="transfer.sourceAccount==selectedAccount" >
+          <td>{{ transfer.id }}</td>
+          <td
+            *ngIf="selectedAccount == transfer.sourceAccount"
+            class="text-danger"
+          >
+            Debited
+          </td>
+          <td data-type="withdrawal" *ngIf="selectedAccount == transfer.targetAccount">Credited</td>
+          <td>{{ transfer.targetAccount }}</td>
+          <td>${{ transfer.amount }}</td>
+          <td>{{ transfer.localDateTime }}</td>
         </tr>
-        <tr data-type="withdrawal">
-          <td>2</td>
-          <td>Withdrawal</td>
-          <td>$50.00</td>
-          <td>2023-02-01</td>
-          <td>ATM withdrawal</td>
-        </tr>
-        <!-- Add more rows as needed -->
       </tbody>
     </table>
+  </div>
+  <div class="d-flex justify-content-center" *ngIf="transactions.length<=0">
+    <ng-lottie [options]="options" width="100%" height="60%"></ng-lottie>
   </div>
 </body>
